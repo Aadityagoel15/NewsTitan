@@ -8,7 +8,7 @@ export class NewsItem extends Component {
         <div className="card">
           <span class="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{left:'90%', zIndex:'1'}}>{source}
           </span>
-          <img src={imageUrl?imageUrl:"https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg"} className="card-img-top" alt="..."/>
+          <img src={imageUrl?imageUrl:"https://st2.depositphotos.com/2619903/6028/v/450/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg"} className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description?description:"Click on Read More to read news"}...</p>

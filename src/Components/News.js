@@ -30,6 +30,19 @@ export class News extends Component {
     document.title = `NewsTitan - ${this.capitalizeFirstLetter(this.props.category)}`;
   }
 
+  async updateNews(){
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=1&pageSize=${this.props.pageSize}`;
+    this.setState({loading: true});
+    let data = await fetch(url);         //It will wait for promises to resolve
+    let parsedData= await data.json();
+    console.log(parsedData);
+    this.setState({
+      articles: parsedData.articles, 
+      totalResults: parsedData.totalResults,
+      loading: false
+    })
+  }
+
   async componentDidMount(){
     console.log("cdm");
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=1&pageSize=${this.props.pageSize}`;

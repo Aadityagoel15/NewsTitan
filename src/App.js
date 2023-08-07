@@ -9,7 +9,6 @@ import {
 
 
 export default class App extends Component {
-  c = 'John'
   render() {
     return (
       <div>
