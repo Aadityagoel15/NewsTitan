@@ -14,6 +14,9 @@ export class News extends Component {
     pageSize: PropTypes.number,
     category: PropTypes.string,
   }
+  capitalizeFirstLetter = (string) =>{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   constructor(props){
     super(props);
@@ -24,7 +27,7 @@ export class News extends Component {
       page : 1,
 
     }
-    document.title = `NewsTitan - ${this.props.category}`;
+    document.title = `NewsTitan - ${this.capitalizeFirstLetter(this.props.category)}`;
   }
 
   async componentDidMount(){
@@ -73,7 +76,7 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <h1 className="text-center" style={{margin: '3  0px 0px'}}>NewsTitan - Top Headlines</h1>
+        <h1 className="text-center" style={{margin: '35px 0px'}}>NewsTitan - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner/>} {/*if this is true then show*/}
         <div className="row">
           {!this.state.loading && this.state.articles.map((element)=>{ //if loading is not there then show otherwise first not show article and after loading show
