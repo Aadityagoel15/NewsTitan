@@ -15,8 +15,8 @@ export class News extends Component {
     category: PropTypes.string,
   }
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     console.log("Hello I am a constructor from news component");
     this.state = {
       articles: [],
@@ -24,6 +24,7 @@ export class News extends Component {
       page : 1,
 
     }
+    document.title = `NewsTitan - ${this.props.category}`;
   }
 
   async componentDidMount(){
@@ -72,12 +73,12 @@ export class News extends Component {
   render() {
     return (
       <div className='container my-3'>
-        <h1 className="text-center" style={{margin: '30px 0px'}}>NewsTitan - Top Headlines</h1>
+        <h1 className="text-center" style={{margin: '3  0px 0px'}}>NewsTitan - Top Headlines</h1>
         {this.state.loading && <Spinner/>} {/*if this is true then show*/}
         <div className="row">
           {!this.state.loading && this.state.articles.map((element)=>{ //if loading is not there then show otherwise first not show article and after loading show
             return <div className="col-md-4" key={element.url}>
-              <NewsItem title={element.title} description={element.description?element.description.slice(0, 55):""} imageUrl={element.urlToImage} newsUrl={element.url}/>
+              <NewsItem title={element.title} description={element.description?element.description.slice(0, 55):""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name}/>
               </div>
             })}
         </div>
