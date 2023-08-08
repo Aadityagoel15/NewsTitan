@@ -30,20 +30,8 @@ export class News extends Component {
     document.title = `NewsTitan - ${this.capitalizeFirstLetter(this.props.category)}`;
   }
 
-  async updateNews(){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=1&pageSize=${this.props.pageSize}`;
-    this.setState({loading: true});
-    let data = await fetch(url);         //It will wait for promises to resolve
-    let parsedData= await data.json();
-    console.log(parsedData);
-    this.setState({
-      articles: parsedData.articles, 
-      totalResults: parsedData.totalResults,
-      loading: false
-    })
-  }
-
   async componentDidMount(){
+    this.props.setProgress(10);
     console.log("cdm");
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=1&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
@@ -54,9 +42,11 @@ export class News extends Component {
       totalResults: parsedData.totalResults,
       loading: false
     })
+    this.props.setProgress(100);
   }
 
   handlePrevClick = async () => {
+    this.props.setProgress(10);
     console.log("Previous")
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;//&pageSize=20 is the total number if news on a page
     this.setState({loading: true});
@@ -68,9 +58,11 @@ export class News extends Component {
       articles: parsedData.articles,
       loading: false
     })
+    this.props.setProgress(100);
   }
 
   handleNextClick = async () => {
+    this.props.setProgress(10);
     console.log("Next")
     if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){  //Total number of pages required
 
@@ -84,6 +76,7 @@ export class News extends Component {
         loading: false
       })
     }
+    this.props.setProgress(100);
   }
 
   render() {
