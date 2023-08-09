@@ -33,7 +33,7 @@ export class News extends Component {
   async componentDidMount(){
     this.props.setProgress(10);
     console.log("cdm");
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=1&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=1&pageSize=${this.props.pageSize}`;
     this.setState({loading: true});
     let data = await fetch(url);         //It will wait for promises to resolve
     let parsedData= await data.json();
@@ -48,7 +48,7 @@ export class News extends Component {
   handlePrevClick = async () => {
     this.props.setProgress(10);
     console.log("Previous")
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;//&pageSize=20 is the total number if news on a page
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;//&pageSize=20 is the total number if news on a page
     this.setState({loading: true});
     let data = await fetch(url);         //It will wait for promises to resolve
     let parsedData= await data.json();
@@ -66,7 +66,7 @@ export class News extends Component {
     console.log("Next")
     if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){  //Total number of pages required
 
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=612e947433984075af22d00cf8927d09&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
       this.setState({loading: true});
       let data = await fetch(url);         //It will wait for promises to resolve
       let parsedData= await data.json();
