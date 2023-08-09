@@ -85,7 +85,7 @@ export class News extends Component {
         <h1 className="text-center" style={{margin: '35px 0px', marginTop: '90px'}}>NewsTitan - Top {this.capitalizeFirstLetter(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner/>} {/*if this is true then show*/}
         <div className="row">
-          {!this.state.loading && this.state.articles.map((element)=>{ //if loading is not there then show otherwise first not show article and after loading show
+          {!this.state.loading && this.state.articles.map((element)=>{
             return <div className="col-md-4" key={element.url}>
               <NewsItem title={element.title} description={element.description?element.description.slice(0, 55):""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name}/>
               </div>
